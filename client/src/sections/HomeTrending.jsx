@@ -5,7 +5,12 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import { Navigation, Autoplay } from 'swiper/modules';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
+import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
+
+
 
 
 const CardData = [
@@ -106,52 +111,117 @@ const CardData = [
         ]
     },
 ]
-const HomeTrending = () => {
-    return (
-        <div className='bg-tertiary w-full h-full'>
-            <div className="wrapper">
-                <h1 className='text-primary sectionHeader mb-10'>
-                    Trending Now
-                </h1>
 
-                <div>
-                <Swiper
-                    slidesPerView={1}
-                    spaceBetween={10}
-                    navigation={{
-                        nextEl: '.custom-next',
-                        prevEl: '.custom-prev',
-                    }}
-                    loop={true}
-                    autoplay={{
-                        delay: 3000,
-                        disableOnInteraction: false,
-                    }}
-                    modules={[Navigation, Autoplay]}
-                    breakpoints={{
-                        520: {
-                            slidesPerView: 1,
-                        },
-                        1040: {
-                            slidesPerView: 2,
-                        },
-                        1224: {
-                            slidesPerView: 3,
-                        },
+// Custom Next Arrow Component
+const CustomNextArrow = (props) => {
+    const { className, onClick } = props;
+    return (
+        <div
+            className={`${className} mr-20 z-[20]`}
+            onClick={onClick}
+        >
+            <FontAwesomeIcon
+                icon={faAngleRight}
+                style={{ color: '#EF476F', fontSize: '40px' }}
+            />
+        </div>
+    );
+};
+
+// Custom Prev Arrow Component
+const CustomPrevArrow = (props) => {
+    const { className, onClick } = props;
+    return (
+        <div
+            className={`${className} ml-20 z-[20]`}
+            onClick={onClick}
+        >
+            <FontAwesomeIcon
+                icon={faAngleLeft}
+                style={{ color: '#EF476F', fontSize: '40px' }}
+            />
+        </div>
+    );
+};
+
+const HomeTrending = () => {
+    var settings = {
+        // className: "center",
+        // centerMode: true,
+        arrows: true,
+        infinite: true,
+        autoplay: true,
+        autoplaySpeed: 3000,
+        pauseOnHover: true,
+        speed: 500,
+        // centerPadding: "60px",
+        slidesToShow: 5,
+        slidesToScroll: 1,
+        initialSlide: 0,
+        rows: 1,
+        slidesPerRow: 1,
+        nextArrow: <CustomNextArrow />,
+        prevArrow: <CustomPrevArrow />,
+        responsive: [
+            {
+                breakpoint: 1921,
+                settings: {
+                    slidesToShow: 4,
+                    slidesToScroll: 1,
+                    initialSlide: 0,
+                },
+            },
+            {
+                breakpoint: 1441,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+                    initialSlide: 0,
+                },
+            },
+            {
+                breakpoint: 769,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    initialSlide: 0,
+                },
+            },
+        ],
+    };
+
+    return (
+        <div className='bg-tertiary w-full h-full pb-20'>
+            <h1 className='text-primary sectionHeader mb-10 wrapper'>
+                Trending Now
+            </h1>
+
+            <div className='w-full h-auto relative'>
+                <div className='z-[10] absolute inset-0 w-full xl:block hidden'>
+                    <div className='relative w-full h-full flex'>
+                        <div className="flex-grow h-full bg-white/50 backdrop-blur-sm" />
+                        <div className='w-[1480px]' />
+                        <div className="flex-grow h-full bg-white/50 backdrop-blur-sm" />
+                    </div>
+                </div>
+
+                <div className='z-0'
+                    style={{
+                        width: "100%",
                     }}
                 >
-                    <div className=''>
+                    <Slider {...settings}>
                         {CardData.map((e, id) => (
-                            <SwiperSlide key={id} className='pb-14'>
-                                <div key={id} className='sm:w-[432px] h-auto shadow-md shadow-black/60'>
-                                    <div className="relative w-full h-[430px]">
+                            <div key={id} className='pb-2 px-6 sm:px-16 2xl:px-0'>
+                                <div className='sm:w-[432px] shadow-md shadow-black/60'>
+                                    <div className="relative w-full">
                                         <img
                                             src={e.img}
                                             alt='Garment'
                                             className='w-full h-[430px] bg-cover object-contain'
                                         />
                                         <div className='absolute bottom-0 left-0 
-                                    w-full h-[118px] z-0 bg-black/30 backdrop-blur-xl'>
+                                            w-full h-[118px] z-0 bg-black/30 backdrop-blur-xl'>
                                             <div className='w-full h-full flex flex-col justify-center text-white p-6'>
                                                 <p className='text-lg'>
                                                     {e.name}
@@ -206,21 +276,12 @@ const HomeTrending = () => {
                                         </div>
                                     </div>
                                 </div>
-                            </SwiperSlide>
+                            </div>
                         ))}
-                    </div>
-
-                    {/* Custom Navigation Buttons */}
-                    <button className="custom-prev">
-                        &#8249; {/* Left Arrow */}
-                    </button>
-                    <button className="custom-next">
-                        &#8250; {/* Right Arrow */}
-                    </button>
-                </Swiper>
+                    </Slider>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 

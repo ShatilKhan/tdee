@@ -32,21 +32,9 @@ html {
   }
 }
 
-/* CSS for red arrow color */
-.swiper-button-next,
-.swiper-button-prev {
-  color: #EF476F;
-}
-.custom-prev, .custom-next {
-  @apply absolute text-primary z-20 text-[60px];
-}
-
-.custom-prev {
-  @apply -bottom-6 left-[40%] right-1/2 transform -translate-x-1/2;
-}
-
-.custom-next {
-  @apply -bottom-6 left-1/2 right-[40%] transform translate-x-1/2;
+.slick-prev:before,
+.slick-next:before {
+    display: none; /* Hide built-in arrows */
 }
 
 .app {

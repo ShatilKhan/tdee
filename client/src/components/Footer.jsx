@@ -69,7 +69,7 @@ const payments = [
 ]
 const Footer = () => {
     return (
-        <div className='w-full h-full bg-black overflow-hidden'>
+        <div className='w-full h-full bg-black overflow-hidden py-10'>
             <div className='wrapper smallText text-white'>
                 <div className='flex gap-10 xl:gap-[120px] flex-wrap justify-between'>
 
@@ -210,7 +210,7 @@ const Footer = () => {
                     {/* Socials */}
                     <div className='md:w-[40%]'>
                         <div className='min-w-[550px] xl:flex justify-between'>
-                            <div className=''>
+                            <div>
                                 <p className='smallText text-white mb-4 uppercase'>
                                     Socials
                                 </p>
@@ -277,9 +277,9 @@ const Footer = () => {
                         </div>
                         <p className='text-[13px] mt-4 text-white'>
                             By clicking the SUBSCRIBE button, you are agreeing to our
-                            <spna className="text-primary underline">
+                            <span className="text-primary underline">
                                 {" "} Privacy & Cookie Policy
-                            </spna>
+                            </span>
                         </p>
 
                         <div className='mt-10 sm:mt-20'>

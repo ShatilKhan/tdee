@@ -9,6 +9,7 @@ import HomeCatalogue from '../sections/HomeCatalogue'
 import HomeServices from '../sections/HomeServices'
 import HomePartners from '../sections/HomePartners'
 
+
 const Home = () => {
     return (
         <>

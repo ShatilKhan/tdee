@@ -38,30 +38,6 @@ const textVariant = (delay) => ({
     },
 });
 
-//  In the First tab right section, each row is a fuction and called in the Main Default- function HomeTab
-function TabOneRight({ circleNumber, header, text, order1, order2, headerColor }) {
-    return (
-        <div className="grid grid-cols-3 md:grid-cols-4 items-center gap-4 py-6">
-            <div className={`text-center rounded-full size-[80px] md:size-[117px] border-2 border-gray-300 flex 
-            items-center justify-center ${order1}`}
-            >
-                <div className="bg-primary rounded-full size-[30px] md:size-[42px] border
-                border-gray-200 shadow-lg text-white font-bold flex items-center justify-center">
-                    <p>{circleNumber}</p>
-                </div>
-            </div>
-            <div className={`col-span-2 md:col-span-3 ${order2}`}>
-                <p className={`text-lg font-bold mb-2 lg:mb-6 ${headerColor}`}>
-                    {header}
-                </p>
-                <p className="text-secondary mb-2 lg:mb-6 text-xs md:text-sm font-semibold">
-                    {text}
-                </p>
-                <div className={`mt-6 md:mt-10 w-full h-0.5 bg-gray-300`}></div>
-            </div>
-        </div>
-    )
-}
 
 const images = [
     '/Home/hometab.png',
@@ -128,7 +104,7 @@ function HomeTab() {
                 variants={fadeIn('up', 'spring', 0.2, 0.5)}
                 src={images[currentIndex - 1]}
                 alt="Image"
-                className="mx-auto object-cover order-2 lg:order-1 md:h-[750px]"
+                className="mx-auto object-cover order-2 lg:order-1 md:h-[790px]"
             />
         )
     }
@@ -153,14 +129,14 @@ function HomeTab() {
             <div className="wrapper">
                 <ul
                     className="mx-auto flex flex-row border border-gray-30 
-                    text-black font-bold text-sm sm:text-lg md:text-2xl"
+                    text-black font-semibold text-base sm:text-xl lg:text-[50px] lg:leading-[60px]"
                 >
-                    <li className="h-[58px] w-full flex items-center justify-center bg-gray1 rounded-[3px]">
+                    <li className="w-full py-3 flex items-center justify-center text-center bg-gray1 rounded-[3px]">
                         <p>
                             Merchant Journey
                         </p>
                     </li>
-                    <li className="h-[58px] w-full flex items-center justify-center bg-primary rounded-[3px]">
+                    <li className="w-full py-3 flex items-center justify-center text-center bg-primary rounded-[3px]">
                         <p>
                             How to Place an Order?
                         </p>
@@ -177,13 +153,15 @@ function HomeTab() {
                                     <div key={index} className="grid grid-cols-3">
                                         <div>
                                             <button
-                                                className={`w-[42px] h-[42px] text-white rounded-full text-center font-bold ${currentIndex >= index + 1 ? 'bg-primary' : 'bg-secondary'}`}
+                                                className={`size-[50px] text-white rounded-full text-center font-bold
+                                            lg:text-2xl
+                                                ${currentIndex >= index + 1 ? 'bg-primary' : 'bg-secondary'}`}
                                                 onClick={() => handleButtonClick(index + 1)}
                                             >
                                                 {index + 1}
                                             </button>
                                             {index < steps.length - 1 && (
-                                                <div className={`ml-5 w-0.5 h-[112px] bg-black/20 ${currentIndex > index + 1 ? 'bg-primary' : ''}`}>
+                                                <div className={`ml-6 w-0.5 h-[118px] bg-black/20 ${currentIndex > index + 1 ? 'bg-primary' : ''}`}>
                                                     {currentIndex === index + 1 && (
                                                         <motion.div
                                                             className={`w-0.5 ${currentIndex >= index + 1 ? 'bg-primary' : 'bg-black/20'}`}
@@ -196,19 +174,19 @@ function HomeTab() {
                                         </div>
 
                                         <div className={`col-span-2 text-right ${currentIndex === index + 1 ? 'text-black' : 'text-secondary'}`}>
-                                            <p className="font-bold text-lg mb-2 lg:mb-4">
+                                            <p className="basicText mb-2 lg:mb-4">
                                                 {step.title}
                                             </p>
-                                            <div className="font-semibold md:text-sm text-xs mb-2 lg:mb-4">
-                                                <motion.p
-                                                    initial="hidden"
-                                                    whileInView="show"
-                                                    viewport={{ once: true, amount: 0.25 }}
-                                                    variants={textVariant(0.5)}
-                                                >
-                                                    {step.description}
-                                                </motion.p>
-                                            </div>
+
+                                            <motion.p
+                                                initial="hidden"
+                                                whileInView="show"
+                                                viewport={{ once: true, amount: 0.25 }}
+                                                variants={textVariant(0.5)}
+                                                className="smallText mb-2 lg:mb-4"
+                                            >
+                                                {step.description}
+                                            </motion.p>
                                             <div className="mb-3 w-full h-0.5 rounded-full bg-black/20" />
                                         </div>
                                     </div>
